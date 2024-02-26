@@ -1,0 +1,69 @@
+//Answer
+
+SELECT products.name, categories.name
+FROM products
+LEFT JOIN store ON store.productId = products.id
+LEFT JOIN categories ON categories.id = store.categoryId 
+
+//Answer wiht Short-names 
+
+SELECT p.name AS products_name, c.name AS categories_name
+FROM products p
+LEFT JOIN store s ON s.productId = p.id
+LEFT JOIN categories c ON c.id = s.categoryId;
+
+
+
+//Create PostgreSQL Tables
+
+CREATE TABLE products (
+	id SERIAL PRIMARY KEY,
+	name TEXT
+);
+
+CREATE TABLE categories (
+	id SERIAL PRIMARY KEY,
+	name TEXT
+);
+
+CREATE TABLE store (
+	productId INT REFERENCES products,
+	categoryId INT REFERENCES categories,
+	UNIQUE (productId, categoryId)
+);
+
+INSERT INTO products (name)
+VALUES
+	('iPhone 15 Pro Max'),
+	('iPad Air'),
+	('Galaxy s24'),
+	('Galaxy Tab s9'),
+	('Xiaomi Pad 6'),
+	('PlayStation'),
+	('Honor 90'),
+	('XBOX');
+
+INSERT INTO categories (name)
+VALUES
+	('Smartphones'),
+	('Tablets'),
+	('Gadgets'),
+	('Keyboards'),
+	('Monitors');
+
+
+
+INSERT INTO store (productId, categoryId)
+VALUES
+	(1, 1),
+	(1, 3),
+	(2, 2),
+	(2, 3),
+	(3, 1),
+	(3, 3),
+	(4, 2),
+	(4, 3),
+	(5, 2),
+	(5, 3),
+	(7, 1),
+	(7, 3);
