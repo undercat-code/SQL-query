@@ -5,7 +5,7 @@ FROM products
 LEFT JOIN store ON store.productId = products.id
 LEFT JOIN categories ON categories.id = store.categoryId 
 
-//Answer wiht Short-names 
+//Answer with Short-names 
 
 SELECT p.name AS products_name, c.name AS categories_name
 FROM products p
